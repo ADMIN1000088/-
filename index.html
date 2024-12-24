@@ -20,6 +20,7 @@
             align-items: center;
             padding: 50px;
             min-height: 100vh; /* 使背景延伸到整个页面 */
+            position: relative; /* 为绝对定位的子元素提供参考 */
         }
 
         /* 按钮容器 */
@@ -27,6 +28,7 @@
             display: flex;
             flex-direction: column;
             gap: 110px; /* 按钮之间的间距 */
+            margin-bottom: 50px; /* 为头像按钮留出空间 */
         }
 
         /* 按钮样式 */
@@ -55,11 +57,49 @@
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         }
 
+        /* 头像按钮样式 */
+        .avatar-button {
+            position: fixed;
+            bottom: 50px; /* 距离底部50px */
+            right: 50px; /* 距离右侧50px */
+            width: 100px; /* 按钮宽度 */
+            height: 100px; /* 按钮高度 */
+            background-color: #ffffff; /* 按钮背景色 */
+            border: 2px solid #006064; /* 按钮边框 */
+            border-radius: 50%; /* 圆形 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer; /* 鼠标悬停时显示为指针 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+            transition: background-color 0.3s, transform 0.3s; /* 过渡效果 */
+        }
+
+        /* 头像按钮悬停效果 */
+        .avatar-button:hover {
+            background-color: #e0f7fa;
+            transform: scale(1.1);
+        }
+
+        /* 头像图片样式 */
+        .avatar-button img {
+            width: 80%; /* 图片宽度 */
+            height: 80%; /* 图片高度 */
+            border-radius: 50%; /* 圆形 */
+        }
+
         /* 响应式设计（可选） */
         @media (max-width: 600px) {
             .company-button {
                 width: 100%;
                 font-size: 60px; /* 在小屏幕上减小字体大小 */
+            }
+
+            .avatar-button {
+                width: 80px; /* 小屏幕上的按钮宽度 */
+                height: 80px; /* 小屏幕上的按钮高度 */
+                bottom: 30px; /* 小屏幕上的距离底部 */
+                right: 30px; /* 小屏幕上的距离右侧 */
             }
         }
     </style>
@@ -68,34 +108,39 @@
 
     <div class="button-container">
         <!-- 按钮1：云点物联 -->
-        <a href="http://wx.ydwlw6.cn/" class="company-button">
+        <a href="" class="company-button">
             云点物联
         </a>
 
         <!-- 按钮2：千拓网络 -->
-        <a href="http://wx.ketu.qiantuo888.xyz/wx/#/" class="company-button">
+        <a href="" class="company-button">
             千拓网络
         </a>
 
         <!-- 按钮3：众沃科技 -->
-        <a href="http://vx.iot688.cn/#/user/loginTwo" class="company-button">
+        <a href="" class="company-button">
             众沃科技
         </a>
 
         <!-- 按钮4：陕西星雀 -->
-        <a href="http://wap.xiaoleism.cn/wap/61/" class="company-button">
+        <a href="" class="company-button">
             陕西星雀
         </a>
 
         <!-- 按钮5：光源万创 -->
-        <a href="http://ic.yingnankj.com/wx/#/" class="company-button">
+        <a href="" class="company-button">
             光源万创
         </a>
 
         <!-- 按钮6：天幻物联 -->
-        <a href="http://tz.52thl.com/czd.php" class="company-button">
+        <a href="" class="company-button">
             天幻物联
         </a>
+    </div>
+
+    <!-- 头像按钮 -->
+    <div class="avatar-button" onclick="window.location.href='登录.html'">
+        <img src="path_to_avatar_image.jpg" alt="头像">
     </div>
 
 </body>
