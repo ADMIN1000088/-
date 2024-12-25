@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom, #FFFFE0, #ADD8E6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 80px 100px; /* 增加内边距 */
+            border-radius: 24px; /* 增加圆角 */
+            box-shadow: 0 12px 20px rgba(0,0,0,0.2); /* 增加阴影 */
+            width: 100%;
+            max-width: 800px; /* 增加最大宽度 */
+            box-sizing: border-box;
+        }
+
+        .login-container h2 {
+            margin: 0 0 60px 0; /* 增加下边距 */
+            text-align: center;
+            color: #333;
+            font-size: 4em; /* 放大字体 */
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 30px; /* 增加内边距 */
+            margin: 30px 0; /* 增加外边距 */
+            border: 4px solid #ccc; /* 加粗边框 */
+            border-radius: 16px; /* 增加圆角 */
+            font-size: 2em; /* 放大字体 */
+            box-sizing: border-box;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 30px; /* 增加内边距 */
+            background: linear-gradient(to right, #FF7E5F, #FEB47B);
+            color: white;
+            border: none;
+            border-radius: 16px; /* 增加圆角 */
+            cursor: pointer;
+            font-size: 2.4em; /* 放大字体 */
+            transition: background 0.3s;
+        }
+
+        .login-container button:hover {
+            background: linear-gradient(to right, #FEB47B, #FF7E5F);
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 60px 40px; /* 调整内边距 */
+            }
+
+            .login-container h2 {
+                font-size: 3em; /* 调整字体大小 */
+            }
+
+            .login-container input, .login-container button {
+                padding: 24px; /* 调整内边距 */
+                font-size: 1.5em; /* 调整字体大小 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>管理员登录</h2>
+        <input type="text" id="username" placeholder="请输入管理员账号">
+        <input type="password" id="password" placeholder="请输入管理员密码">
+        <button onclick="login()">登录</button>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (username === 'ADMIN' && password === 'ADMIN080913') {
+                window.location.href = '管理员后台.html';
+            } else {
+                alert('管理员账号或密码错误，请重新输入');
+            }
+        }
+    </script>
+</body>
+</html>
