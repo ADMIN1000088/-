@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>渐变背景与按钮示例</title>
+    <style>
+        /* 设置网页背景为从上到下的浅黄色到浅粉色渐变 */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #ffffe0, #ffb6c1); /* 渐变背景 */
+            font-family: Arial, sans-serif;
+        }
+
+        /* 矩形框样式 */
+        .content-box {
+            background-color: white; /* 背景颜色为白色 */
+            border: 3px solid black; /* 边框为3px黑色实线 */
+            border-radius: 15px; /* 圆角半径为15px */
+            padding: 30px; /* 内边距为30px */
+            margin: 30px; /* 外边距为30px */
+            width: 80%; /* 宽度为父容器的80% */
+            max-width: 800px; /* 最大宽度为800px */
+            box-sizing: border-box; /* 包括内边距和边框在内的宽度计算 */
+            aspect-ratio: 3 / 2; /* 设置宽高比为3:2 */
+            font-size: 50px; /* 固定字体大小为50px */
+            overflow: auto; /* 如果内容过多，添加滚动条 */
+        }
+
+        /* 响应式调整矩形框大小 */
+        @media (max-width: 600px) {
+            .content-box {
+                width: 90%; /* 在小屏幕下宽度调整为90% */
+                padding: 20px; /* 内边距调整为20px */
+            }
+        }
+
+        /* 按钮容器 */
+        .button-container {
+            display: flex; /* 使用flex布局 */
+            gap: 10px; /* 按钮之间的间距为10px */
+            margin-top: 0; /* 移除按钮容器上方的外边距 */
+            width: 80%; /* 宽度为父容器的80% */
+            max-width: 600px; /* 最大宽度为600px */
+            justify-content: space-between; /* 按钮均匀分布 */
+            box-sizing: border-box; /* 包括内边距和边框在内的宽度计算 */
+        }
+
+        /* 按钮样式 */
+        .btn {
+            padding: 55px 30px; /* 内边距为55px 30px */
+            border: none; /* 无边框 */
+            border-radius: 10px; /* 圆角半径为10px */
+            cursor: pointer; /* 鼠标悬停时显示为指针 */
+            font-size: 45px; /* 字体大小为45px */
+            transition: background-color 0.3s; /* 背景颜色过渡时间为0.3s */
+            flex: 1; /* 按钮均匀分配宽度 */
+            background-color: rgba(255, 255, 255, 0.5); /* 50% 白色透明背景 */
+            color: white; /* 字体颜色为白色 */
+        }
+
+        /* 确定按钮颜色改为红色 */
+        .btn-ok {
+            background-color: rgba(244, 67, 54, 0.5); /* 红色背景，50% 透明度 */
+        }
+
+        /* 取消按钮颜色改为绿色 */
+        .btn-cancel {
+            background-color: rgba(76, 175, 80, 0.5); /* 绿色背景，50% 透明度 */
+        }
+
+        /* 按钮悬停效果 */
+        .btn-ok:hover {
+            background-color: rgba(218, 25, 11, 0.8); /* 悬停时背景颜色变为更深的红色 */
+        }
+
+        .btn-cancel:hover {
+            background-color: rgba(69, 160, 73, 0.8); /* 悬停时背景颜色变为更深的绿色 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 矩形框用于显示文本 -->
+    <div class="content-box" id="contentBox">
+        <p>即将进入设置APN详细教程页面，点击下方按钮，选择是否要进入</p>
+    </div>
+
+    <!-- 按钮容器 -->
+    <div class="button-container">
+        <!-- 确定按钮，点击后跳转到指定的HTML页面 -->
+        <button class="btn btn-ok" onclick="location.href='https://www.yuque.com/r/note/ea470e42-6a98-46e1-aef7-a41af07aabcc?_refluxos=a10'">确定</button>
+
+        <!-- 取消按钮，点击后返回上一页 -->
+        <button class="btn btn-cancel" onclick="window.history.back()">取消</button>
+    </div>
+
+    <!-- 可选：JavaScript用于动态调整矩形框高度（根据内容变化） -->
+    <script>
+        // 获取内容框元素
+        const contentBox = document.getElementById('contentBox');
+
+        // 监听窗口大小变化以调整内容框大小
+        window.addEventListener('resize', function() {
+            adjustContentBox();
+        });
+
+        // 初始化调整内容框大小
+        window.addEventListener('load', function() {
+            adjustContentBox();
+        });
+
+        // 函数：调整内容框大小
+        function adjustContentBox() {
+            // 这里可以根据需要添加更多的逻辑来动态调整内容框的宽度和高度
+            // 例如，根据内容的高度来调整宽度
+            // 目前主要依赖于CSS的响应式设计
+        }
+    </script>
+
+</body>
+</html>
