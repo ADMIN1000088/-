@@ -7,28 +7,31 @@
         /* 定义CSS变量 */
         :root {
             /* 导航栏高度 */
-            --nav-height: 120px; /* 默认高度为120px，可根据需要调整 */
+            --nav-height: 130px; /* 默认高度为130px，可根据需要调整 */
             
             /* 图标大小 */
-            --icon-size: 110px; /* 默认图标大小为80px，可根据需要调整 */
+            --icon-size: 105px; /* 默认图标大小为105px，可根据需要调整 */
             
             /* 文字大小 */
-            --nav-text-size: 50px; /* 默认文字大小为50px，可根据需要调整 */
+            --nav-text-size: 45px; /* 调整6个模块，可根据需要调整 */
             
             /* 顶端模块高度 */
-            --top-module-height: calc(var(--nav-height) * 0.9); /* 90%的高度 */
+            --top-module-height: calc(var(--nav-height) * 1.3); /* 增加了30%，变为原来的130% */
             
             /* 置顶模块高度 */
-            --additional-top-module-height: calc(var(--nav-height) * 0.7); /* 70%的高度 */
+            --additional-top-module-height: calc(var(--nav-height) * 1.2); /* 120%的高度 */
             
             /* 图标与模块边缘的距离 */
-            --icon-margin: 30px; /* 图标距离模块边缘30px */
+            --icon-margin: 15px; /* 图标距离模块左边15px */
+            
+            /* 文字与图标的距离 */
+            --text-icon-gap: 0px; /* 文字距离图标20px */
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'KaiTi', Arial, sans-serif; /* 文字字体改为楷体，如果楷体不可用则使用Arial或sans-serif */
             background-color: #f0f0f0; /* 浅灰色背景 */
             position: relative; /* 为定位子元素提供参考 */
         }
@@ -38,19 +41,19 @@
             flex-wrap: wrap;
             justify-content: space-between;
             padding: 5%;
-            padding-top: calc(var(--additional-top-module-height) + 5vh); /* 增加总屏幕高度的5% */
+            padding-top: calc(var(--additional-top-module-height) + 5vh); /* 顶部模块与6个模块之间的距离 */
         }
 
-        /* 6个模块和1个长方形模块的通用样式 */
+        /* 7个模块和1个长方形模块的通用样式 */
         .module, .additional-module {
             width: 48%; /* 左右各留1% */
-            height: var(--nav-height); /* 使用CSS变量设置高度 */
+            height: calc(var(--nav-height) * 1.25); /* 6个模块的高度 */
             background-color: #ffffff;
             border-radius: 10px;
             margin-bottom: 4%;
             display: flex;
             align-items: center; /* 垂直居中 */
-            padding-left: var(--icon-margin); /* 图标距离左侧30px */
+            padding-left: var(--icon-margin); /* 图标距离左边15px */
             box-sizing: border-box; /* 包括内边距和边框 */
             position: relative;
             cursor: pointer; /* 鼠标悬停时显示为指针 */
@@ -68,14 +71,15 @@
             left: 50%;
             transform: translateX(-50%); /* 水平居中 */
             width: 100%; /* 宽度覆盖整个容器 */
-            height: var(--top-module-height); /* 90%的高度 */
+            height: var(--top-module-height); /* 增加了30%，变为原来的130% */
             background-color: #ffffff;
             border-radius: 10px;
             z-index: 1000; /* 确保置顶 */
             box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 添加阴影以突出显示 */
             display: flex;
+            justify-content: center; /* 水平居中 */
             align-items: center; /* 垂直居中 */
-            padding-left: var(--icon-margin); /* 图标距离左侧30px */
+            padding: 0; /* 去掉默认的内边距 */
             box-sizing: border-box; /* 包括内边距和边框 */
         }
 
@@ -91,13 +95,19 @@
 
         /* 文字样式 */
         .module .text,
-        .top-module .text,
         .additional-module .text {
             flex-grow: 1; /* 文字占据剩余空间 */
             text-align: left; /* 文字左对齐 */
             font-size: var(--nav-text-size); /* 使用CSS变量设置文字大小 */
             color: #333333; /* 文字颜色 */
-            margin-left: 10px; /* 文字与图标的间距 */
+            margin-left: var(--text-icon-gap); /* 文字距离图标20px */
+            font-family: 'KaiTi', serif; /* 文字字体改为楷体 */
+        }
+
+        /* 顶端模块的文字样式 */
+        .top-module .text {
+            margin-left: 0; /* 去掉默认的左边距 */
+            /* 顶端模块的文字已经通过flex布局实现上下左右居中 */
         }
 
         /* 底部导航栏样式 */
@@ -110,6 +120,7 @@
             justify-content: space-around;
             padding: 10px 0; /* 增加底部导航栏的内边距 */
             border-top: 1px solid #e0e0e0;
+            z-index: 1000; /* 确保置顶 */
         }
 
         /* 导航按钮样式 */
@@ -132,6 +143,15 @@
             margin-top: 0; /* 去掉默认的上边距 */
             font-size: var(--nav-text-size); /* 使用CSS变量设置文字大小 */
             color: #333333; /* 文字颜色 */
+            font-family: 'KaiTi', serif; /* 文字字体改为楷体 */
+        }
+
+        /* 版权信息样式 */
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333333;
         }
     </style>
 </head>
@@ -144,12 +164,12 @@
 </div>
 
 <div class="container">
-    <!-- 6个模块 -->
+    <!-- 7个模块 -->
     <div class="module" onclick="window.location.href='recharge.html'">
         <img src="充值查询.png" alt="充值查询" class="icon">
         <div class="text">充值查询</div>
     </div>
-    <div class="module" onclick="window.location.href='customer_service.html'">
+    <div class="module" onclick="window.location.href='recharge.html'">
         <img src="人工客服.png" alt="人工客服" class="icon">
         <div class="text">人工客服</div>
     </div>
@@ -166,11 +186,9 @@
         <div class="text">更换补发</div>
     </div>
     <div class="module" onclick="window.location.href='set_apn.html'">
-        <img src="设置.png" alt="设置APN" class="icon">
+        <img src="设置APN.png" alt="设置APN" class="icon">
         <div class="text">设置APN</div>
     </div>
-
-    <!-- 7个模块下方的长方形模块 -->
     <div class="additional-module" onclick="window.location.href='complaint.html'">
         <img src="投诉建议.png" alt="投诉建议" class="icon">
         <div class="text">投诉建议（对客服态度不满意可进行投诉）</div>
@@ -196,6 +214,12 @@
         <img src="客服.png" alt="客服">
         <span>客服</span>
     </div>
+</div>
+
+<!-- 版权信息 -->
+<div class="copyright">
+    <p>版权©归物联科技·梁镇浩所有！</p>
+    <p>反馈联系方式3628529838@qq.com</p>
 </div>
 
 </body>
