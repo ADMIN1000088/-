@@ -27,7 +27,13 @@
             --icon-margin: 15px; /* 图标距离模块左边15px */
             
             /* 文字与图标的距离 */
-            --text-icon-gap: -130px; /* 文字距离图标5px */
+            --text-icon-gap: -70px; /* 文字距离图标5px */
+            
+            /* 底部导航栏图标大小 */
+            --bottom-icon-size: 60px; /* 底部导航栏图标大小 */
+            
+            /* 底部导航栏文字大小 */
+            --bottom-text-size: 24px; /* 底部导航栏文字大小 */
         }
 
         body {
@@ -131,6 +137,20 @@
             cursor: pointer; /* 鼠标悬停时显示为指针 */
         }
 
+        /* 导航按钮图标样式 */
+        .nav-button .icon {
+            width: var(--bottom-icon-size); /* 使用CSS变量设置图标大小 */
+            height: var(--bottom-icon-size);
+        }
+
+        /* 导航按钮文字样式 */
+        .nav-button .text {
+            margin-top: 5px; /* 文字与图标之间的间距 */
+            font-size: var(--bottom-text-size); /* 使用CSS变量设置文字大小 */
+            color: #333333; /* 文字颜色 */
+            text-align: center; /* 文字居中 */
+        }
+
         /* 版权信息样式 */
         .copyright {
             text-align: center;
@@ -177,7 +197,7 @@
     </div>
     <div class="additional-module" onclick="window.location.href='complaint.html'">
         <img src="投诉建议.png" alt="投诉建议" class="icon">
-        <div class="text">投诉建议（对客服态度不满意可投诉）</div>
+        <div class="text">投诉建议</div>
     </div>
 </main>
 
@@ -185,20 +205,20 @@
 <footer class="bottom-nav">
     <!-- 商城 -->
     <div class="nav-button" onclick="window.location.href='商城.html'">
-        <img src="商城.png" alt="商城">
-        <span>商城</span>
+        <img src="商城.png" alt="商城" class="icon">
+        <span class="text">商城</span>
     </div>
 
     <!-- 服务大厅 -->
     <div class="nav-button" onclick="window.location.href='index.html'">
-        <img src="服务大厅.png" alt="服务大厅">
-        <span>服务大厅</span>
+        <img src="服务大厅.png" alt="服务大厅" class="icon">
+        <span class="text">服务大厅</span>
     </div>
 
     <!-- 客服 -->
     <div class="nav-button" onclick="window.location.href='客服.html'">
-        <img src="客服.png" alt="客服">
-        <span>客服</span>
+        <img src="客服.png" alt="客服" class="icon">
+        <span class="text">客服</span>
     </div>
 </footer>
 
