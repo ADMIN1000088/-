@@ -1,83 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>岛屿物联服务大厅</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>移动应用界面示例</title>
+    <style>
+        /* 定义CSS变量 */
+        :root {
+            /* 导航栏高度 */
+            --nav-height: 120px; /* 默认高度为120px，可根据需要调整 */
+            
+            /* 图标大小 */
+            --icon-size: 80px; /* 默认图标大小为80px，可根据需要调整 */
+            
+            /* 文字大小 */
+            --nav-text-size: 30px; /* 默认文字大小为30px，可根据需要调整 */
+            
+            /* 顶端模块高度 */
+            --top-module-height: calc(var(--nav-height) * 0.9); /* 90%的高度 */
+            
+            /* 置顶模块高度 */
+            --additional-top-module-height: calc(var(--nav-height) * 0.7); /* 70%的高度 */
+            
+            /* 图标与模块边缘的距离 */
+            --icon-margin: 30px; /* 图标距离模块边缘30px */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* 浅灰色背景 */
+            position: relative; /* 为定位子元素提供参考 */
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 5%;
+            padding-top: calc(var(--additional-top-module-height) + 5vh); /* 增加总屏幕高度的5% */
+        }
+
+        /* 6个模块和1个长方形模块的通用样式 */
+        .module, .additional-module {
+            width: 48%; /* 左右各留1% */
+            height: var(--nav-height); /* 使用CSS变量设置高度 */
+            background-color: #ffffff;
+            border-radius: 10px;
+            margin-bottom: 4%;
+            display: flex;
+            align-items: center; /* 垂直居中 */
+            padding-left: var(--icon-margin); /* 图标距离左侧30px */
+            box-sizing: border-box; /* 包括内边距和边框 */
+            position: relative;
+            cursor: pointer; /* 鼠标悬停时显示为指针 */
+        }
+
+        /* 7个模块下方的长方形模块 */
+        .additional-module {
+            width: 100%; /* 宽度覆盖整个容器 */
+        }
+
+        /* 顶端模块样式 */
+        .top-module {
+            position: absolute;
+            top: 10px; /* 距离顶部10px */
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            width: 100%; /* 宽度覆盖整个容器 */
+            height: var(--top-module-height); /* 90%的高度 */
+            background-color: #ffffff;
+            border-radius: 10px;
+            z-index: 1000; /* 确保置顶 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 添加阴影以突出显示 */
+            display: flex;
+            align-items: center; /* 垂直居中 */
+            padding-left: var(--icon-margin); /* 图标距离左侧30px */
+            box-sizing: border-box; /* 包括内边距和边框 */
+        }
+
+        /* 图标样式 */
+        .module .icon,
+        .top-module .icon,
+        .additional-module .icon {
+            width: var(--icon-size); /* 使用CSS变量设置图标大小 */
+            height: var(--icon-size);
+            flex-shrink: 0; /* 防止图标缩小 */
+            /* 注释：图标与模块边缘的距离已在父元素中设置 */
+        }
+
+        /* 文字样式 */
+        .module .text,
+        .top-module .text,
+        .additional-module .text {
+            flex-grow: 1; /* 文字占据剩余空间 */
+            text-align: left; /* 文字左对齐 */
+            font-size: var(--nav-text-size); /* 使用CSS变量设置文字大小 */
+            color: #333333; /* 文字颜色 */
+            margin-left: 10px; /* 文字与图标的间距 */
+        }
+
+        /* 底部导航栏样式 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0; /* 增加底部导航栏的内边距 */
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* 导航按钮样式 */
+        .nav-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer; /* 鼠标悬停时显示为指针 */
+        }
+
+        /* 导航按钮图标样式 */
+        .nav-button img {
+            width: var(--icon-size); /* 使用CSS变量设置图标大小 */
+            height: var(--icon-size);
+            margin-bottom: 5px; /* 图标与文字之间的间距 */
+        }
+
+        /* 导航按钮文字样式 */
+        .nav-button span {
+            margin-top: 0; /* 去掉默认的上边距 */
+            font-size: var(--nav-text-size); /* 使用CSS变量设置文字大小 */
+            color: #333333; /* 文字颜色 */
+        }
+    </style>
 </head>
-
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <img src="岛屿公司logo.png" alt="岛屿公司logo">
-            </div>
-            <div class="user-info">
-                <span>1</span>
-            </div>
-        </div>
-        <h1>岛屿物联服务大厅</h1>
-    </header>
-    <main>
-        <!-- 轮播图模块 -->
-        <section class="carousel">
-            <div class="carousel-inner">
-                <img src="首页轮番图1.png" alt="Carousel Image 1" class="carousel-image active">
-                <img src="首页轮番图2.png" alt="Carousel Image 2" class="carousel-image">
-                <!-- 依次添加其他8张图片 -->
-                <img src="首页轮番图10.png" alt="Carousel Image 10" class="carousel-image">
-            </div>
-        </section>
-        <section class="services">
-            <div class="service">
-                <img src="充值查询.png" alt="充值查询">
-                <p>充值查询</p>
-            </div>
-            <div class="service">
-                <img src="人工客服.png" alt="人工客服">
-                <p>人工客服</p>
-            </div>
-            <div class="service">
-                <img src="广电适配.png" alt="广电适配">
-                <p>广电适配</p>
-            </div>
-            <div class="service">
-                <img src="激活教程.png" alt="激活教程">
-                <p>激活教程</p>
-            </div>
-            <div class="service">
-                <img src="更换补发.png" alt="更换补发">
-                <p>更换补发</p>
-            </div>
-            <div class="service">
-                <img src="设置APN.png" alt="设置APN">
-                <p>设置APN</p>
-            </div>
-        </section>
-        <section class="complaint">
-            <img src="投诉建议.png" alt="投诉建议">
-            <p>投诉建议(对客服态度不满意可进行投诉)</p>
-        </section>
-    </main>
-    <footer>
-        <div class="footer-nav">
-            <a href="#" class="nav-link">
-                <img src="商城对应的图标.png" alt="商城图标">
-                <span>商城</span>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="服务大厅对应的图标.png" alt="服务大厅图标">
-                <span>服务大厅</span>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="人工客服.png" alt="客服图标">
-                <span>客服</span>
-            </a>
-        </div>
-    </footer>
-    <script src="script.js"></script>
-</body>
 
+<!-- 顶端模块 -->
+<div class="top-module">
+    <img src="图标路径" alt="岛屿公司logo.png" class="icon">
+    <div class="text">岛屿物联服务大厅</div>
+</div>
+
+<div class="container">
+    <!-- 6个模块 -->
+    <div class="module" onclick="window.location.href='recharge.html'">
+        <img src="充值查询.png" alt="充值查询" class="icon">
+        <div class="text">充值查询</div>
+    </div>
+    <div class="module" onclick="window.location.href='customer_service.html'">
+        <img src="人工客服.png" alt="人工客服" class="icon">
+        <div class="text">人工客服</div>
+    </div>
+    <div class="module" onclick="window.location.href='broadcast_adaptation.html'">
+        <img src="广电适配.png" alt="广电适配" class="icon">
+        <div class="text">广电适配</div>
+    </div>
+    <div class="module" onclick="window.location.href='activation_tutorial.html'">
+        <img src="激活教程.png" alt="激活教程" class="icon">
+        <div class="text">激活教程</div>
+    </div>
+    <div class="module" onclick="window.location.href='replacement.html'">
+        <img src="更换补发.png" alt="更换补发" class="icon">
+        <div class="text">更换补发</div>
+    </div>
+    <div class="module" onclick="window.location.href='set_apn.html'">
+        <img src="设置 APN.png" alt="设置 APN" class="icon">
+        <div class="text">设置 APN</div>
+    </div>
+
+    <!-- 7个模块下方的长方形模块 -->
+    <div class="additional-module" onclick="window.location.href='complaint.html'">
+        <img src="投诉建议.png" alt="投诉建议" class="icon">
+        <div class="text">投诉建议（对客服态度不满意可进行投诉）</div>
+    </div>
+</div>
+
+<!-- 底部导航栏 -->
+<div class="bottom-nav">
+    <!-- 商城 -->
+    <div class="nav-button" onclick="window.location.href='mall.html'">
+        <img src="商城图标路径" alt="商城">
+        <span>商城</span>
+    </div>
+
+    <!-- 服务大厅 -->
+    <div class="nav-button" onclick="window.location.href='service_hall.html'">
+        <img src="服务大厅.png" alt="服务大厅">
+        <span>服务大厅</span>
+    </div>
+
+    <!-- 客服 -->
+    <div class="nav-button" onclick="window.location.href='customer_service_nav.html'">
+        <img src="客服.png" alt="客服">
+        <span>客服</span>
+    </div>
+</div>
+
+</body>
 </html>
