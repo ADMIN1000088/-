@@ -40,38 +40,30 @@ main {
     padding: 20px;
 }
 
-.main-offer {
-    background-color: #F0F0F0;
-    text-align: center;
-    padding: 20px;
-    margin-bottom: 20px;
+/* 轮播图样式 */
+.carousel {
+    width: 100%;
+    height: 200px; /* 根据第一张图调整高度 */
+    overflow: hidden;
+    position: relative;
 }
 
-.offer-content {
-    max-width: 300px;
-    margin: 0 auto;
+.carousel-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
-.price {
-    color: #FF0000;
-    font-size: 24px;
-    margin: 10px 0;
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
 }
 
-.data {
-    color: #FF0000;
-    font-size: 36px;
-    font-weight: bold;
-}
-
-.order-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
+.carousel-image.active {
+    display: block;
 }
 
 .services {
